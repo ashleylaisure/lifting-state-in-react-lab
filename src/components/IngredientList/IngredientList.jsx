@@ -5,14 +5,14 @@ const IngredientList = (props) => {
         <div>
             <h1>Available Ingredients</h1>
 
-            {/* <ul>
-                {ingredients.map((ingredient) => (
-                    <li style={{backgroundColor: ingredient.color}} >
+            <ul>
+                {props.ingredients.map((ingredient, index) => (
+                    <li key={index} style={{backgroundColor: ingredient.color}} >
                         {ingredient.name} 
-                    <   button onClick={() => handleAddToBurger(ingredient)}>+</>
+                        <button onClick={() => props.handleAddToBurger(ingredient)}>+</button>
                     </li>
                 ))}
-            </ul> */}
+            </ul>
 
         </div>
         

@@ -29,19 +29,17 @@ const App = () => {
 
   const handleAddToBurger = (ingredient) => {
     setStack([...stack, ingredient]);
-    removeFromList(ingredient.name)
-  }
 
-  const removeFromList = (removeIngredient) => {
-    const newIngredientList = ingredients.filter(ingredient => ingredient.name !== removeIngredient)
+    const newIngredientList = ingredients.filter(el => el.name !== ingredient.name)
     setIngredients(newIngredientList)
   }
 
 
-  const handleRemoveFromBurger = (removeIngredient) => {
-    const newStack = stack.filter(ingredient => ingredient.name !== removeIngredient.name )
+  const handleRemoveFromBurger = (ingredient) => {
+    const newStack = stack.filter(el => el.name !== ingredient.name )
     setStack(newStack)
-    setIngredients([...ingredients, removeIngredient])
+
+    setIngredients([...ingredients, ingredient])
   }
 
 
@@ -52,40 +50,9 @@ const App = () => {
 
       <section>
 
-        <div>
-          <h1>Available Ingredients</h1>
+        <IngredientList ingredients={ingredients} handleAddToBurger={handleAddToBurger} />
 
-          <ul>
-            {ingredients.map((ingredient) => (
-              <li style={{backgroundColor: ingredient.color}} >
-                {ingredient.name} 
-                <button onClick={() => handleAddToBurger(ingredient)}>+</button>
-              </li>
-          
-              
-            ))}
-          </ul>
-
-        </div>
-
-        
-
-        <div>
-
-          <h1>Burger Stack</h1>
-
-          <p>{stack.length === 0 ? "Add some Ingredients" : ''}</p>
-
-          <ul>
-            {stack.map((ingredient) => (
-              <li style={{backgroundColor: ingredient.color}} >
-                {ingredient.name} 
-                <button onClick={() => handleRemoveFromBurger(ingredient)}>x</button>
-              </li>
-            ))}
-          </ul>
-
-        </div>
+        <BurgerStack stack={stack} handleRemoveFromBurger={handleRemoveFromBurger}/>
 
       </section>
     </main>
